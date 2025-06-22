@@ -1,3 +1,6 @@
+# Создано для проекта
+config/
+
 # Django #
 *.log
 *.pot
