@@ -14,6 +14,10 @@ from pathlib import Path
 
 from configparser import ConfigParser
 
+urlsconf = 'config/config.ini'
+config = ConfigParser()
+config.read(urlsconf)
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -22,7 +26,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/5.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-tas2jux@!@wk)(d_ue$6vo&_sr^72gv&#e+6qaoh)mrsxp6*8='
+SECRET_KEY = config['Django_settings']['SECRET_KEY']
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -75,10 +79,7 @@ WSGI_APPLICATION = 'MyProject.wsgi.application'
 # https://docs.djangoproject.com/en/5.2/ref/settings/#databases
 
 
-urlsconf = 'config/config.ini'
-config = ConfigParser()
-config.read(urlsconf)
-DATABASES = config['DataBase']['DATABASES']
+DATABASES = config['Django_settings']['DATABASES']
 # данные для подключения указаны в файле config.ini который включен в gitignore
 
 
