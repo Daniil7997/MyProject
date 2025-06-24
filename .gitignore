@@ -1,5 +1,5 @@
 # Создано для проекта
-config/
+MyProject/config/
 
 # Django #
 *.log

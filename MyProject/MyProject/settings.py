@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'main'
 ]
 
 MIDDLEWARE = [
@@ -78,7 +79,7 @@ WSGI_APPLICATION = 'MyProject.wsgi.application'
 
 
 DATABASES = config_databases  # import from config.config
-# данные для подключения указаны в файле config.ini который включен в gitignore
+# данные для подключения указаны в файле config.py который включен в gitignore
 
 
 # Password validation
