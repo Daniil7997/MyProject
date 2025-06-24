@@ -12,7 +12,9 @@ https://docs.djangoproject.com/en/5.2/ref/settings/
 
 from pathlib import Path
 import os
+from os.path import dirname
 
+from configparser import ConfigParser
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -21,8 +23,18 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/5.2/howto/deployment/checklist/
 
+
+config_path = dirname(dirname(dirname(__file__))) + '/config.ini'
+print(config_path)
+config = ConfigParser()
+config.read(config_path)
+config_secret_key = config['settings']['SECRET KEY']
+config_databases = config['settings']['DATABASES']
+print(config_databases)
+print(config_path)
+
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-tas2jux@!@wk)(d_ue$6vo&_sr^72gv&#e+6qaoh)mrsxp6*8='
+SECRET_KEY = config_secret_key
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -75,16 +87,7 @@ WSGI_APPLICATION = 'MyProject.wsgi.application'
 # https://docs.djangoproject.com/en/5.2/ref/settings/#databases
 
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'DbForMyProject',
-        'USER': 'postgres',
-        'PASSWORD': '9524',
-        'HOST': 'localhost',
-        'PORT': '5432',
-    }
-}
+DATABASES = config_databases
 # данные для подключения указаны в файле config.ini который включен в gitignore
 
 
